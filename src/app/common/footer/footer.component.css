@@ -1,0 +1,17 @@
+footer {
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Add shadow to the bottom */
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  

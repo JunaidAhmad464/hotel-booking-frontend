@@ -1,0 +1,15 @@
+.width{
+    width: 25% !important;
+}
+
+.style{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.addNewBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}

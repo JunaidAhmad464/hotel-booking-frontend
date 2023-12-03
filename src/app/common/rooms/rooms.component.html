@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h2>Available Rooms</h2>
+  <div class="row" *ngIf="rooms.length > 0">
+    <div *ngFor="let room of rooms" class="col-md-4 mb-4">
+      <div class="card">
+        <img [src]="'assets/' + room.imageUrl" class="card-img-top" alt="{{ room.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ room.name }}</h5>
+          <p class="card-text">{{ room.description }}</p>
+          <p class="card-text">Price: ${{ room.price }}</p>
+          <button *ngIf="!room.isBooked" (click)="openRoomBookingModal(room?.id)" class="btn btn-primary">Book Now</button>
+          <p *ngIf="room.isBooked" class="text-success font-weight-bold mt-2">Booked!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for room booking -->
+<ng-template #bookingModal>
+  <div class="modal-header">
+    <h4 class="modal-title">Book Room</h4>    
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h6 style="color: red;">kindly select checkIn and checkout date for booking</h6>
+    <form [formGroup]="bookingForm">
+      <div class="form-group">
+        <label for="checkIn">Check In</label>
+        <input type="date" class="form-control mt-2" formControlName="checkIn" placeholder="Check In Date" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="checkOut">Check Out</label>
+        <input type="date" class="form-control mt-2" formControlName="checkOut" placeholder="Check Out Date" required>
+      </div>      
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+    <button type="button" [disabled]="!bookingForm.valid" class="btn btn-success" (click)="bookRoom()">Book Now</button>
+  </div>
+</ng-template>
+

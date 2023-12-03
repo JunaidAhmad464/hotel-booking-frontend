@@ -1,0 +1,9 @@
+.width{
+    width: 25% !important;
+}
+
+.style{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}

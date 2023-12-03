@@ -1,0 +1,75 @@
+<div class="container mt-5">
+    <div class="addNewBtn">
+        <button type="button" class="btn btn-success" ngbTooltip="Add New Room" (click)="openRoomModal()">Add New Room</button>
+    </div>
+    <div class="style">
+        <h2>Customer Requests</h2>
+        <input type="text" class="form-control width" (keyup)="onFilterChanged($event.target)" placeholder="Search">
+    </div>
+    <!-- ag grid -->
+    <ag-grid-angular #myGrid style="width: 100%" class="ag-theme-alpine" id="myGrid" [columnDefs]="columnDefs"
+        [rowData]="customerRequestData" (gridReady)="onGridReady($event)" [pagination]="true" [paginationPageSize]="5"
+        (cellClicked)="onCellClicked($event)">
+    </ag-grid-angular>
+</div>
+
+
+<!-- Modal for creating room -->
+<ng-template #roomModal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Room</h4>    
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="roomForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control mt-2" formControlName="name" placeholder="Room Name" required>
+        </div>
+        <div class="form-group mt-2">
+          <label for="roomType">Roop Type</label>
+          <select class="form-control mt-2" formControlName="roomType" placeholder="Select Room Type" required>
+            <option value="" selected="true" disabled>Select Room Type</option>            
+            <option *ngFor="let type of roomTypes" [value]="type?.id">
+                {{type?.name}}
+            </option>
+          </select> 
+        </div>   
+        <div class="form-group mt-2">
+            <label for="price">Price</label>
+            <input type="number" class="form-control mt-2" formControlName="price" placeholder="Room Price" required>
+        </div> 
+        <div class="form-group mt-2">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control mt-2" formControlName="description" placeholder="Room Description">
+            </textarea>
+        </div>    
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      <button type="button" [disabled]="!roomForm.valid" class="btn btn-success" (click)="addRoom()">Add Room</button>
+    </div>
+</ng-template>
+
+<!-- Approve or reject  -->
+<ng-template #approveOrRejectModal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{modalTitle}}</h4>    
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <strong>Are you sure?</strong>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      <button type="button" class="btn btn-success" (click)="approveOrRejectRequest()" 
+        [ngStyle]="{'background-color': (buttonName=='Reject') ? '#D52A46' : '','border-color': (buttonName=='Reject') ? '#D52A46' : ''}">
+        {{buttonName}}
+    </button>
+    </div>
+</ng-template>

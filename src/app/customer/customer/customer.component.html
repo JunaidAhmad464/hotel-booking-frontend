@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <div class="style">
+        <h2>Booking Status</h2>
+        <input type="text" class="form-control width" (keyup)="onFilterChanged($event.target)" placeholder="Search">
+    </div>
+    <!-- ag grid -->
+    <ag-grid-angular #myGrid style="width: 100%" class="ag-theme-alpine" id="myGrid" [columnDefs]="customerColumns"
+        [rowData]="customerBooking" (gridReady)="onGridReady($event)" [pagination]="true" [paginationPageSize]="5">
+    </ag-grid-angular>
+</div>

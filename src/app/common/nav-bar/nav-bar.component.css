@@ -1,0 +1,31 @@
+.navbar {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #fff;
+  }
+  
+  .navbar-nav {
+    margin-top: 10px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .nav-link:hover {
+    color: #f8f9fa; /* Lighter shade for hover effect */
+  }
+
+  .pointer{
+    cursor: pointer;
+  }
+  
